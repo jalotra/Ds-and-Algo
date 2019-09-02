@@ -11,6 +11,7 @@ void merge(int, int, int, int []);
 int main(){
 
     int arr[] = {85,24,63,45,17,31,96,50,15};
+    // int arr[] = {21,32,1,56,84,25,32,10};
     int array_size = sizeof(arr)/ sizeof(arr[0]);
     
     mergeSort(0, array_size -1 , arr );
