@@ -1,112 +1,116 @@
-// This c is a standalone queue implementation
+// On the other hand the queue is based on FIFO
+
+// The queue is also a very useful data-structure
 
 
-
-// WHAT IS A STACK ??
-//Ans A stack is a great way of representing data, when only you have to worry about the last data item
-// A practical example would be like this 
-
-// Suppose you have to go from n towns to finally reach a place (z).
-// THe map looks like this a -> b -> c .... -> z
-// Now you are standing on the town z and you have to go back to town (a)
-// Town a is the town that originally you came from .
-
-// Now you at each town i you have to know about the previous town or the town (i-1)
-// SO this data of all the towns can be reporesented as a stack and you can easily get back to your town (a)
-// tASK FINISHED
-
-
-// NOW CODE STARTS
-// one MOre thing the stack works on LIFO or (Last in first out).
-// Read about that on internet 
+// THe methods that queue ADT provides us are
+//1. insert
+//2. delete_front 
+//3. display
+//4. display_peak
 
 
 #include "stdio.h"
 
-// Methods devoted to STack
-// FUnction declarations
-void push(int data);
-int pop();
-int display_peak();
-void display_all();
+//CODE STARTS
+// Function Declartions
+
+void insert(int data);                                // inserts data at the end
+int delete_front();                                   // pops out the first data item in the list
+void display_front();                                 // displays the item present at the front-end
+void display_all();                              // displays all the element from front to end
 
 
-// DATA VARIABLES AND STACK ARRAY DEFINED
-#define MAX_LENGTH 1000                    // The maximum value of items in a stack
-int data; 
-int Stack_array[MAX_LENGTH];
-int top = -1;
+// IMPLEMENTING QUEUE WITH THE HELP OF ARRAY
+// Declaring useful varibales
+
+#define MAX_LENGTH 1000                    // total elements that a queue can hold
+#define GARBAGE_VALUE 68892
+int front = -1;
+int end = -1; 
+int Queue_Array[MAX_LENGTH];
 
 int main()
 {
-	// Driver COde to test the implementation
-	push(2);
-	push(1);
-	push(5);
+	// Implements the driver code
+	insert(5);
+	insert(1);
+	insert(2);
+	insert(10);
 
 	display_all();
 
-	pop();
+	delete_front();
 	display_all();
-} 
+}
 
-void push(int data)
+
+// Function Definitions
+
+void insert(int data)
 {
-	if(top < MAX_LENGTH)
+	if(end < MAX_LENGTH)
 	{
-		top++;
-		Stack_array[top] = data;
+		if(front == -1)                     // Means that the queue is empty
+	{
+		front++;
+		end++;	
+		Queue_Array[end] = data;
 
+	}
+		else{
+			end++;
+			Queue_Array[end] = data;
+
+		}
 	}
 	else
 	{
-		printf("%s", "Stack overflowed");
+		printf("%s", "Queue Overflowed");
 	}
+	
 }
 
-int pop()
+// delete_front() function delete_fronts the element present at the front location that is at the zeroth index
+// And then shifts all the remianing queue to the left by one unit 
+// And also decrements the end variable 	
+int delete_front()                                  						
 {	
-	int item;
-	if(top == -1)
+	if(front != -1)
 	{
-		printf("%s\n", "No data is presnt in the stack");
+		int item_to_return;
+		item_to_return = Queue_Array[front];
+		if(end != 0)                    // Only one element is not present in the list
+		{	
+			for(int i = front+1 ; i <= end; i++)
+			{
+				Queue_Array[i -1] = Queue_Array[i];
+			}
+			// Enter the garbage value in the loaction Queue[top]
+			Queue_Array[end] = GARBAGE_VALUE;
+			end--;
+		}
+		else{
+			front--;
+			end--;
+		}
 	}
 	else
 	{
-		item = Stack_array[top];
-		top--;
+		printf("%s\n", "Queue is empty");
 	}
-	return item;
 }
 
-int display_peak()
+void display_front()
 {
-	if(top != -1)
-	{
-		printf("%s%d\n", "The value of the peak element is ", Stack_array[top]);
-	}
-	else
-	{
-		printf("%s\n", "Stack is empty");
-	}
+	printf("%s%d\n","The value that is present at the front location is ", Queue_Array[front]);
 }
 
 void display_all()
 {
-	if(top != -1)
-	{	
-		int i = top;
-		printf("%s\n", "Printing all the elemets present in the array");
-		printf("\n");
-		while(i >= 0)
-		{
-			printf("%d\n", Stack_array[i]);	
-			i--;
-		}
-		
-	}
-	else
+	printf("%s\n", "Printing all the elements present in the Queue" );
+	for(int i = front ; i <= end; i++)
 	{
-		printf("%s\n", "Stack is empty");
+		printf("%d\n", Queue_Array[i]);
 	}
 }
