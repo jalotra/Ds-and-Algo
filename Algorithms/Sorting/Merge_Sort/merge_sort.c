@@ -10,7 +10,7 @@ void merge(int, int, int, int []);
 
 int main(){
 
-    int arr[] = {85,24,63,45,17,31,96,50,15};
+    int arr[] = {1,5,6,9,8,5,6,2,3,2,4,5,3,6,5,4,5};
     // int arr[] = {21,32,1,56,84,25,32,10};
     int array_size = sizeof(arr)/ sizeof(arr[0]);
     

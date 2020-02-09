@@ -1,3 +1,4 @@
+#include <iostream>
 #include "singly_linked_list.hpp"
 
 // What is a singly linked list 
@@ -39,5 +40,53 @@ struct Node* create_list(struct Node* start){
 	int data, number_of_nodes;
 	start = NULL;
 	start = insertAtFirst(start, data); 
+}
+
+// Inserts a node at the first position
+struct Node* insertAtFirst(struct Node* start, int data)
+{
+	// node = malloc(Node, sizeof(Node*));
+	// node->data = data;
+	// node->link = start;
+	Node *tmp;
+	tmp = (Node *)malloc(sizeof(Node));
+	tmp -> data= data;
+	tmp -> link = start;
+	start = temp;
+
+	return start;
+
+}
+
+struct Node* insertAfter(struct Node* start , int item , int data)
+{
+	while(start->link != NULL)
+	{
+		if (start -> data == item)
+		{
+			break;
+		}
+		else
+		{
+			start = start->link;
+		}
+	}
+
+	// Now start contains the node that contains the data (item)
+	// NOw create a new temp node
+	Node *tmp;
+	tmp = (Node *)malloc(sizeof(Node));
+	tmp->data = data;
+
+	// Next is to change the tmp variable link to the start link 
+	tmp-> link = start->link;
+
+	// Change the link of the start to the tmp NOde
+	start-> link = &tmp;
+
+
+	// FInally return start
+	return start;
+
 }
 

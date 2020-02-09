@@ -11,7 +11,11 @@ struct state
 };
 
 
-
+// struct Node
+// {
+// 	int val;
+// 	struct *Node next = NULL;
+// }
 
 
 #endif

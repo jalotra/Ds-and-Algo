@@ -48,7 +48,7 @@ const ll INF = 1e18;
 const int MX = 100001; //check the limits, dummy
 
 // Function Declaration
-int Knapsack(int wt[], int v[], int W, int n);
+long long int Knapsack(int wt[], int v[], int W, int n);
 int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0);    
 
@@ -58,19 +58,24 @@ int main() {
 	// such as the total sum of the weights is less than W
 
 	// Inputs are wt[], v[], W(total_weight), n 
-	int wt[] = {10,20,30};
-	int values[] = {60,100,120};
-	int W = 50;
-	int n = sizeof(wt)/sizeof(wt[0]);
-	cout << Knapsack(wt, values, W, n);
+	int N,W;
+	cin >> N >> W;
+	int v[N];
+	int wt[W];
+
+	FOR(i,0,N)
+	{
+		cin>> wt[i] >> v[i]; 
+	}
+	cout << Knapsack(wt, v, W, N);
 	
 	return 0;
 }
 
-int Knapsack(int wt[], int v[], int W, int n)
+long long int Knapsack(int wt[], int v[], int W, int n)
 {
 	
-	int K[n+1][W+1] ;
+	long long K[n+1][W+1] ;
 	// Base case 
 	// k[n][0] = 0
 	// k[0][w] = 0

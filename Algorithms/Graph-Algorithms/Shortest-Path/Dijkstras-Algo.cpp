@@ -143,7 +143,7 @@ int main()
 	
 		std::vector<int>first = {0 ,0,1,1,6,6,4,2,2,7,7};
 		std::vector<int>second = {1,6,4,2,4,7,5,5,3,5,3};
-		std::vector <int> value = {2,6,2,7,1,4,2,3,3,2,2};
+		std::vector <int> value = {2,6,2,7,1,4,2,3,3,2,9};
 		
 		for(int i = 0; i < first.size(); i++)
 		{

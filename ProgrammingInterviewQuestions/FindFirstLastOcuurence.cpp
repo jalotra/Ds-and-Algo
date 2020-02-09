@@ -64,6 +64,37 @@ int FirstOccurence(vector<int> A, int n, int value)
 			result = mid;
 			// high = mid-1;             // TO find the first occurence
 
+			high= mid-1;              // To find the last occurence
+			
+			// Also you can just return the int (last_occurence - first_occurence)
+			// to count the number of times a particular element has occured in the array
+		}
+		else if(value < A[mid])
+		{
+			high = mid -1;
+		}
+		else
+		{
+			low = mid + 1 ;
+		}
+
+}
+return result;
+}
+
+int LastOccurence(vector<int> A, int n, int value)
+{
+	int high = n-1; int low = 0;
+	int result = -1;
+	while(low <= high)
+	{
+		int mid = low + (high-low)/2;
+		// Base condition
+		if(A[mid] == value)
+		{
+			result = mid;
+			// high = mid-1;             // TO find the first occurence
+
 			low = mid+1;              // To find the last occurence
 			
 			// Also you can just return the int (last_occurence - first_occurence)
@@ -86,8 +117,9 @@ int main() {
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
 	vector<int> array = {1 ,2 ,2, 3 ,3 ,4 ,4 ,5 ,5 ,5 ,5, 5,6 ,6, 6, 8 ,9 };
-	int result = FirstOccurence(array, array.size(), 6);
-	cout << result <<endl; 
+	int first_result = FirstOccurence(array, array.size(), 9);
+	int last_result = LastOccurence(array, array.size(), 9);
+	cout << last_result - first_result +1 <<endl; 
 	
 	return 0;
 }

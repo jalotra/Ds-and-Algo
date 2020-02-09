@@ -7,10 +7,10 @@
 using namespace std;
 
 // Struct Node definition
-struct Node{
+typedef struct {
 	int data;
 	struct Node* link;
-}
+}Node;
 
 // Function Declarations
 struct Node* create_list(struct Node *start);                     // Creates a new sll with a Null Pointer
